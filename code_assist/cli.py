@@ -1,20 +1,23 @@
 import click
-import os
-from code_assist.utils import get_input_method, get_copied_code, get_code_from_file
+
+from code_assist.utils import get_code_from_file, get_copied_code, get_input_method
+
 
 @click.group()
 def cli():
     pass
 
+
 @cli.command()
 def generate():
     """Generate new code."""
-    click.echo('Not yet implemented!')
+    click.echo("Not yet implemented!")
+
 
 @cli.command()
 def improve():
     """Improve existing code."""
-    click.echo('Not yet implemented!')
+    click.echo("Not yet implemented!")
 
     input_method = get_input_method()
 
@@ -28,7 +31,5 @@ def improve():
     click.echo(code)
 
 
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     cli()
