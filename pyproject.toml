@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "code-assist"
+version = "0.1.0"
+description = "A code assistant cli implementation"
+authors = ["Kyle Maulden <kylebmaulden@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^1.12.0"
+click = "^8.1.7"
+pre-commit = "^3.6.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
