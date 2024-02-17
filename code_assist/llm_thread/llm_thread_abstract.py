@@ -10,5 +10,9 @@ class LlmThreadAbstract(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def generate_response(self, message):
+    def generate_response(self):
+        pass
+
+    @abc.abstractmethod
+    def get_last_message(self):
         pass
