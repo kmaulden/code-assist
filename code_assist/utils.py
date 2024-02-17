@@ -74,8 +74,10 @@ def process_thread(ai_helper: LlmThreadAbstract) -> None:
         else:
             click.echo("Generating response... ")
             ai_helper.add_message(instructions)
-            ai_helper.generate_response()
-            res = ai_helper.get_last_message()
-
-            # TODO add auto exit on certain responses
-            click.echo(res)
+            status = ai_helper.generate_response()
+            if status == "completed":
+                res = ai_helper.get_last_message()
+                click.echo(res)
+            else:
+                click.echo(f"Issue with LLM response - status: {status}. Exiting...")
+                break

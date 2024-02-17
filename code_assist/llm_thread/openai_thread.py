@@ -4,7 +4,8 @@ from openai import OpenAI
 
 from code_assist.llm_thread.llm_thread_abstract import LlmThreadAbstract
 
-DEFAULT_NAME = "CodeAssistant"
+DEFAULT_NAME_IMRPOVE = "CodeAssistantImprove"
+DEFAULT_NAME_GENERATE = "CodeAssistantGenerate"
 DEFUALT_MODEL = "gpt-3.5-turbo-0125"
 DEFAULT_IMPROVE_INSTRUCTIONS = """
     You are an AI assistant trained to improve Python code.
@@ -47,13 +48,15 @@ class OpenAiThreadHelper(LlmThreadAbstract):
         """Creates a thread."""
         return self.client.beta.threads.create()
 
-    def _create_assistant(self, name: str = DEFAULT_NAME, instructions: str = None):
+    def _create_assistant(self, instructions: str = None):
         """Creates an assistant with the default instructions."""
         instructions = instructions or (
             DEFAULT_IMPROVE_INSTRUCTIONS
             if self.type == "improve"
             else DEFAULT_GENERATE_INSTRUCTIONS
         )
+
+        name = DEFAULT_NAME_IMRPOVE if self.type == "improve" else DEFAULT_NAME_GENERATE
 
         assistant = self.client.beta.assistants.create(
             name=name,
