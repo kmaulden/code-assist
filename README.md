@@ -16,7 +16,7 @@ Before running, you must ensure that your OpenAI API key is in your environment 
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-You can then run the package executable as as below.
+You can then run the package executable as as below, or optionally set up a `codeassist` alias for this command.
 ```bash
 python {pip install location}/code_assist/cli.py {command}
 ```
