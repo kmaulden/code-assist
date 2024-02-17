@@ -2,23 +2,30 @@
 
 `code-assist` is a command-line tool that harnesses OpenAI's code assistance capabilities to enhance existing Python code and generate new code snippets. It offers two main commands: `improve` and `generate`.
 
-## Installation
+## Installation and Execution
 
-The package uses a poetry virtual environment which contains all required binaries for the package to run.
+The package includes `.whl` files for distribution.
 
-To install the package on our environment, run the following command:
+To install the package on your environment, run the following command:
 ```bash
-hold
+pip install `_path_to_.whl`
 ```
 
-You must ensure that your OpenAI API key is in your environment variables.
-   ```base
-   OPENAI_API_KEY=your_openai_api_key
-   OPENAI_CODE_GENERATE_ASSISTANT_ID=code_generate_model_id
-   OPENAI_CODE_IMPROVE_ASSISTANT_ID=code_improve_model_id
-   ```
+Before running, you must ensure that your OpenAI API key is in your environment variables.
+```base
+OPENAI_API_KEY=your_openai_api_key
+```
+
+You can then run the package executable as as below.
+```bash
+python {pip install location}/code_assist/cli.py {command}
+```
 
 After running each assistant, you may choose to re-use your assistants. You can do this by setting the respective assistant ID's.
+```base
+OPENAI_CODE_GENERATE_ASSISTANT_ID=code_generate_model_id
+OPENAI_CODE_IMPROVE_ASSISTANT_ID=code_improve_model_id
+```
 
 ## Usage
 
