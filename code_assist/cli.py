@@ -22,7 +22,13 @@ def cli():
 @cli.command()
 def generate():
     """Generate new code."""
-    click.echo("Not yet implemented!")
+    ai_helper = OpenAiThreadHelper(
+        os.environ.get("OPENAI_API_KEY"),
+        os.environ.get("OPENAI_CODE_GENERATE_ASSISTANT_ID"),
+        "generate",
+    )
+
+    process_thread(ai_helper=ai_helper)
 
 
 @cli.command()
@@ -39,7 +45,7 @@ def improve():
     click.echo(code)
 
     ai_helper = OpenAiThreadHelper(
-        os.environ.get("API_KEY"),
+        os.environ.get("OPENAI_API_KEY"),
         os.environ.get("OPENAI_CODE_IMPROVE_ASSISTANT_ID"),
         "improve",
         code,
