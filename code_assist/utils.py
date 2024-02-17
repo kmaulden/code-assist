@@ -1,8 +1,10 @@
 import os
-import click
 
+import click
 import questionary
+
 from code_assist.llm_thread.llm_thread_abstract import LlmThreadAbstract
+
 
 def _validate_integer(value):
     try:
@@ -62,16 +64,15 @@ def get_code_from_file():
 
     return "".join(selected_lines).rstrip("\n")
 
+
 def process_thread(ai_helper: LlmThreadAbstract) -> None:
 
     while True:
         instructions = questionary.text("Instructions: ").ask()
-        if instructions is None:
-            break
-        elif instructions.lower() == "exit":
+        if (instructions is None) or (instructions.lower() == "exit"):
             break
         else:
-            click.echo(f"Generating response... ")
+            click.echo("Generating response... ")
             ai_helper.add_message(instructions)
             ai_helper.generate_response()
             res = ai_helper.get_last_message()
