@@ -1,7 +1,10 @@
 import click
-
+import os
+from dotenv import load_dotenv
 from code_assist.utils import get_code_from_file, get_copied_code, get_input_method, process_thread
 from code_assist.llm_thread.openai_thread import OpenAiThreadHelper
+
+load_dotenv()
 
 @click.group()
 def cli():
@@ -27,8 +30,13 @@ def improve():
         code = get_code_from_file()
     click.echo(code)
     
-    # TODO put key in env
-    ai_helper = OpenAiThreadHelper("", 'improve', code)
+    ai_helper = OpenAiThreadHelper(
+        os.environ.get("API_KEY"), 
+        os.environ.get("OPENAI_CODE_IMPROVE_ASSISTANT_ID"),
+        'improve',
+        code
+    )
+
     process_thread(ai_helper=ai_helper)
 
 

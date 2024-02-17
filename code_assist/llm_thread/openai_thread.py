@@ -1,5 +1,4 @@
 import time
-
 from openai import OpenAI
 
 from code_assist.llm_thread.llm_thread_abstract import LlmThreadAbstract
@@ -29,11 +28,11 @@ DEFAULT_GENERATE_INSTRUCTIONS = """
 
 class OpenAiThreadHelper(LlmThreadAbstract):
 
-    def __init__(self, api_key, type, code = None, model = "gpt-3.5-turbo-0125"):
+    def __init__(self, api_key, assisant_id, type, code = None, model = "gpt-3.5-turbo-0125"):
         self.client = OpenAI(api_key=api_key)
-        self.model=model
+        self.model = model
         self.type = type
-        self.assistant = self._create_assistant()
+        self.assistant_id = assisant_id if assisant_id else self._create_assistant()
         self.thread = self._create_thread()
 
         if self.type == 'improve':
@@ -55,7 +54,7 @@ class OpenAiThreadHelper(LlmThreadAbstract):
             model=self.model,
         )
         print(f"new assistant created, id#: {assistant.id} \n")
-        return assistant
+        return assistant.id
 
     def _check_status(self, run_id):
         """Checks the status of a run every second until it is completed."""
@@ -88,7 +87,7 @@ class OpenAiThreadHelper(LlmThreadAbstract):
         """Runs an assistant on a thread."""
         run = self.client.beta.threads.runs.create(
             thread_id=self.thread.id,
-            assistant_id=self.assistant.id,
+            assistant_id=self.assistant_id,
         )
         print(f"Run ID: {run.id}")
         
