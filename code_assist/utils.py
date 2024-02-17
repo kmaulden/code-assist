@@ -16,8 +16,8 @@ def _validate_integer(value):
 
 def get_input_method():
     result = questionary.select(
-        "Would you like to copy & paste the code (copy) or read from file (else)?",
-        choices=["copy", "else"],
+        "Would you like to copy & paste the code (copy) or read from file (file)?",
+        choices=["copy", "file"],
         default="copy",
     ).ask()
 
