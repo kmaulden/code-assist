@@ -47,28 +47,6 @@ Run this command with the following
 codeassist generate
 ```
 
-# OpenAI Assistant CLI
-
-This CLI tool allows you to generate and improve code using OpenAI's code generation models.
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Set up your OpenAI API key in a .env file:
-   ```plaintext
-   OPENAI_API_KEY=your_openai_api_key
-   OPENAI_CODE_GENERATE_ASSISTANT_ID=code_generate_model_id
-   OPENAI_CODE_IMPROVE_ASSISTANT_ID=code_improve_model_id
-   ```
-
-
 ## Author
 Kyle Maulden
 
